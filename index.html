@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"
+      rel="stylesheet"
+      id="bootstrap-css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <!------ Include the above in your HEAD tag ---------->
+
+    <article>
+      <div class="item-wrapper">
+        <figure>
+          <div
+            class="image"
+            style="
+              background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSt6ji_FamfDPX04Gr302JzIR0720imaWJ-KqXw75xRbw&s);
+            "
+          ></div>
+          <div class="lighting"></div>
+        </figure>
+        <div class="item-content">
+          <h1>SEA</h1>
+          <p>Wild and free, just like the </p>
+          <div class="author">SEA</div>
+        </div>
+      </div>
+    </article>
+    <article>
+      <div class="item-wrapper">
+        <figure>
+          <div
+            class="image"
+            style="
+              background-image: url(https://media.istockphoto.com/id/538449165/photo/beautiful-cloudscape-over-the-sea-sunset-shot.jpg?s=612x612&w=0&k=20&c=XwieRIV5Df3Azuk8tH3CnAlLA-GO5GBE7R7dKtb1POw=);
+            "
+          ></div>
+          <div class="lighting"></div>
+        </figure>
+        <div class="item-content">
+          <h1>Sunset</h1>
+          <p>all the letters in the Alphabet but no word for this</p>
+          <div class="author">SUNSET</div>
+
+          </div>
+        </div>
+      </div>
+    </article>
+    <article>
+      <div class="item-wrapper">
+        <figure>
+          <div
+            class="image"
+            style="
+              background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvr1noAMPpW2ecAZ9YBTWYhlX3DRl2ekh2bWPIleslgw&s);
+"
+          ></div>
+          <div class="lighting"></div>
+        </figure>
+        <div class="item-content">
+          <h1>Wild Forest</h1>
+          <p>In the untamed wild, she laughed and smiled.</p>
+          <div class="author"></div>
+        </div>
+      </div>
+    </article>
+    <script>
+      var articles = $("article > .item-wrapper"),
+        lightingRgb = "255,255,255";
+
+      articles.mousemove(function (e) {
+        var current = $(this),
+          x = current.width() - e.offsetX * 2,
+          y = current.height() - e.offsetY * 2,
+          rx = -x / 30,
+          ry = y / 24,
+          deg = Math.atan2(y, x) * (180 / Math.PI) + 45;
+        current.css({
+          transform:
+            "scale(1.05) rotateY(" + rx + "deg) rotateX(" + ry + "deg)",
+        });
+        $("figure > .lighting", this).css(
+          "background",
+          "linear-gradient(" +
+            deg +
+            "deg, rgba(" +
+            lightingRgb +
+            ",0.32) 0%, rgba(" +
+            lightingRgb +
+            ",0) 100%)"
+        );
+      });
+
+      articles.on({
+        mouseenter: function () {
+          var current = $(this);
+          current.addClass("enter ease").removeClass("leave");
+          setTimeout(function () {
+            current.removeClass("ease");
+          }, 280);
+        },
+        mouseleave: function () {
+          var current = $(this);
+          current.css({ transform: "rotate(0)" });
+          current.removeClass("enter").addClass("leave");
+          $("figure > .lighting", this).removeAttr("style");
+        },
+      });
+    </script>
+  </body>
+</html>
